@@ -6,6 +6,9 @@ estado = 'não logado'
 token = ''
 nome = ''
 senha = ''
+saldo = 0
+idade = 0
+
 
 while True:
     if estado == 'não logado':
@@ -16,6 +19,8 @@ while True:
         [ 2 ] Sair
         ''')
         pergunta = int(input('Escolha: '))
+    if pergunta != 0 and pergunta != 1 and pergunta != 2:
+        print('INVALIDO')
     if estado == 'não logado':
         if pergunta == 0:
                 while True: # Pergunta os dados 
@@ -80,25 +85,28 @@ while True:
         [ 3 ] Sair
         ''')
         pergunta1 = int(input('Escolha: '))
-    if pergunta1 == 0:
-        print(' - - SUAS INFORMAÇÕES - - ')
-        print(f'''
-        Nome: {nome}
-        Saldo: {saldo}
-        Idade: {idade}
-        ''')
-    elif pergunta1 == 1:
-        print(' - - DEPOSITAR - - ')
-        dep = float(input('Quanto depositar: R$'))
-        saldo += dep
-    elif pergunta1 == 2:
-        print(' - - TRANSFERIR - - ')
-        tran = float(input('Quantidade que quer transferir: '))
-        pessoa = str(input('Nome da pessoa: '))
-        lista_pessoas = []
-        lista_pessoas.append(pessoa,tran)
-        print('TRANSFERIDO COM SUCESSO!')
-    elif pergunta1 == 3:
-        estado = 'não logado'
-    else:
-        print('Inválido')
+    if estado == 'logado':
+        if pergunta1 == 0:
+            print(' - - SUAS INFORMAÇÕES - - ')
+            print(f'''
+            Nome: {nome}
+            Saldo: {saldo}
+            Idade: {idade}
+            ''')
+        elif pergunta1 == 1:
+            print(' - - DEPOSITAR - - ')
+            dep = float(input('Quanto depositar: R$'))
+            saldo += dep
+        elif pergunta1 == 2:
+            print(' - - TRANSFERIR - - ')
+            tran = float(input('Quantidade que quer transferir: R$'))
+            pessoa = str(input('Nome da pessoa: '))
+            lista_pessoas = []
+            lista_pessoas.append(pessoa)
+            lista_pessoas.append(tran)
+            cont = 0
+            print('TRANSFERIDO COM SUCESSO!')
+        elif pergunta1 == 3:
+            estado = 'não logado'
+        else:
+            print('Inválido')
